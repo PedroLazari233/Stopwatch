@@ -23,13 +23,19 @@
                 }
                 else if(input == "I")
                 {
-                    stopwatch.ProvidePeriod();
-                    Console.WriteLine(String.Format("{0}", stopwatch.Interval));
+                    if(stopwatch.EndTime < stopwatch.StartTime)
+                    {
+                        Console.WriteLine("Insert the end time before asking for the interval");
+                    }
+                    else
+                    {
+                        stopwatch.ProvidePeriod();
+                        Console.WriteLine(String.Format("{0}", stopwatch.Interval));
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Wrong input");
-                    Console.WriteLine("S to start, E to end and P for the period");
                 }
             }
         }
