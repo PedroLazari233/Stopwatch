@@ -12,22 +12,23 @@ namespace Stopwatch
         private DateTime _startTime;
         private DateTime _endTime;
 
-        public double Interval { get; set; }
+        public double Interval { get; private set; }
 
         public DateTime StartTime
         {
             get { return _startTime; }
-            set { _startTime = value; }
         }
         public DateTime EndTime
         {
             get { return _endTime; }
-            set { _endTime = value; }
         }
 
         public void StartWatch()
         {
-            _startTime = DateTime.UtcNow;
+            if (_startTime != new DateTime(0))
+                throw new InvalidOperationException("Watch is already running!");
+            else
+                _startTime = DateTime.UtcNow;
         }
 
         public void StopWatch()
